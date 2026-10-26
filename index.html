@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f8fc">
+<title>Contactly — Personal Contacts</title>
+<style>
+:root{--bg:#f6f7fb;--panel:#fff;--ink:#172033;--muted:#7b8498;--line:#e8ebf2;--primary:#635bff;--primary2:#5148ef;--soft:#eeedff;--green:#1e9b72;--red:#df4f62;--shadow:0 12px 32px rgba(31,41,75,.06)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #c8c5ff;outline-offset:2px}
+.layout{min-height:100vh;display:grid;grid-template-columns:245px minmax(0,1fr)}.sidebar{background:#fff;border-right:1px solid var(--line);padding:27px 18px;display:flex;flex-direction:column;gap:34px}.brand{display:flex;align-items:center;gap:11px;padding:0 8px;font-weight:800;font-size:20px;letter-spacing:-.5px}.brand-mark{height:38px;width:38px;border-radius:13px;background:linear-gradient(145deg,#817aff,#5b50f0);color:#fff;display:grid;place-items:center;font-size:20px;box-shadow:0 6px 14px #635bff3b}.nav-label{font-size:10px;letter-spacing:1.5px;color:#a0a7b8;font-weight:800;padding:0 12px;margin:0 0 10px}.nav{display:grid;gap:6px}.nav button{border:0;background:transparent;color:#727c91;padding:12px 13px;border-radius:11px;text-align:left;display:flex;align-items:center;gap:12px;font-weight:650}.nav button:hover{background:#f7f7fc}.nav button.active{background:var(--soft);color:var(--primary)}.nav .count{margin-left:auto;font-size:12px;color:inherit;background:#ffffff9c;border-radius:7px;padding:1px 7px}.side-note{margin-top:auto;border:1px solid var(--line);background:#fbfbff;padding:16px;border-radius:14px}.side-note .check{width:29px;height:29px;background:#e3f8ef;color:var(--green);display:grid;place-items:center;border-radius:9px;margin-bottom:11px}.side-note strong{display:block;font-size:13px}.side-note p{font-size:12px;color:var(--muted);margin:5px 0 0}.side-footer{font-size:10px;color:#a0a7b8;letter-spacing:1px;font-weight:700;padding:0 8px}
+main{min-width:0}.topbar{height:76px;background:#ffffffc9;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,4vw,54px);gap:16px}.crumb{color:var(--muted);font-size:13px}.crumb b{color:#354057;font-weight:700}.user-chip{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:650}.status-dot{height:8px;width:8px;background:#39c58b;border-radius:50%}.avatar-user{height:34px;width:34px;background:#fff0db;color:#a55c18;border-radius:50%;display:grid;place-items:center;font-weight:800}
+.content{max-width:1400px;margin:auto;padding:36px clamp(20px,4vw,54px) 30px}.hero{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:28px}.eyebrow{color:var(--primary);font-size:10px;font-weight:850;letter-spacing:1.7px;margin:0 0 8px}.hero h1{font-size:clamp(28px,3vw,36px);line-height:1.15;letter-spacing:-1.4px;margin:0}.hero p.sub{color:var(--muted);margin:9px 0 0}.btn{border:1px solid var(--line);border-radius:10px;padding:10px 15px;background:#fff;color:#46516a;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.15s}.btn:hover{transform:translateY(-1px);box-shadow:0 6px 15px #1b25400d}.btn-primary{background:var(--primary);color:#fff;border-color:var(--primary);box-shadow:0 6px 15px #635bff2c}.btn-primary:hover{background:var(--primary2)}.btn-danger{color:var(--red)}.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:25px}.stat{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:19px 20px;box-shadow:var(--shadow)}.stat-head{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:13px;font-weight:650}.stat-icon{height:34px;width:34px;border-radius:10px;display:grid;place-items:center;background:#efeeff;color:var(--primary);font-size:17px}.stat:nth-child(2) .stat-icon{background:#fff5df;color:#d88d13}.stat:nth-child(3) .stat-icon{background:#e3f8ef;color:var(--green)}.stat-number{font-size:30px;line-height:1.25;font-weight:800;letter-spacing:-1px;margin-top:12px}.stat-desc{color:#9aa1b1;font-size:12px;margin:4px 0 0}
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}.panel-head{padding:22px 23px 17px;display:flex;align-items:center;justify-content:space-between;gap:14px}.panel-head h2{font-size:17px;margin:0;letter-spacing:-.3px}.panel-head p{font-size:12px;color:var(--muted);margin:4px 0 0}.view-switch{background:#f5f6fa;padding:3px;border-radius:9px;display:flex;gap:3px}.view-switch button{border:0;background:transparent;color:#9299aa;border-radius:7px;width:33px;height:31px}.view-switch button.active{background:#fff;color:var(--primary);box-shadow:0 2px 7px #20294b12}
+.toolbar{padding:0 23px 18px;display:flex;align-items:center;gap:12px}.search{position:relative;flex:1;max-width:480px}.search span{position:absolute;left:13px;top:10px;color:#9aa1b1}.search input{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 13px 10px 39px;background:#fcfcfe;color:var(--ink)}.search input::placeholder{color:#a2a8b7}.filter{border:1px solid var(--line);border-radius:10px;background:#fff;padding:10px 35px 10px 12px;color:#687187;max-width:170px}.result-count{margin-left:auto;font-size:12px;color:#9aa1b1;white-space:nowrap}
+.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse;white-space:nowrap}.table th{background:#fafbfe;color:#9aa1b1;text-align:left;font-size:10px;letter-spacing:1px;font-weight:800;padding:13px 19px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.table td{padding:15px 19px;border-bottom:1px solid #f0f1f6;font-size:13px}.table tbody tr:last-child td{border-bottom:0}.table tbody tr:hover{background:#fcfcff}.person{display:flex;align-items:center;gap:11px;min-width:185px}.person-avatar{height:39px;width:39px;flex-shrink:0;border-radius:12px;display:grid;place-items:center;font-size:12px;font-weight:850}.tone-0{background:#e9e8ff;color:#5b52dc}.tone-1{background:#ffe9e4;color:#c65f4d}.tone-2{background:#e2f6ed;color:#27855e}.tone-3{background:#fff0d6;color:#a66b14}.tone-4{background:#e1f0ff;color:#3977bd}.person-name{font-weight:750;color:#29334a}.person-company{font-size:11px;color:#9aa1b1;margin-top:3px}.muted{color:#7d879b}.tag{display:inline-flex;padding:5px 9px;border-radius:7px;font-size:11px;font-weight:750;background:#f0efff;color:#6258d8}.tag.Family{background:#fff0e4;color:#bd7430}.tag.Friends{background:#e7f7ef;color:#27845e}.tag.Work{background:#eaf2ff;color:#3d71bd}.actions{display:flex;align-items:center;gap:5px}.icon-btn{height:31px;width:31px;border:1px solid transparent;background:transparent;border-radius:8px;color:#8e96a8;display:grid;place-items:center;font-size:16px}.icon-btn:hover{border-color:var(--line);background:#fff}.icon-btn.fav{color:#e6a32b}.icon-btn.del:hover{color:var(--red);background:#fff5f6}
+.cards{padding:0 22px 22px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.contact-card{border:1px solid var(--line);border-radius:14px;padding:17px;min-width:0}.contact-card-top{display:flex;align-items:center;justify-content:space-between}.contact-card h3{font-size:15px;margin:13px 0 2px}.contact-card .company{color:var(--muted);font-size:12px;margin:0 0 14px}.detail{font-size:12px;color:#6e7890;margin:7px 0;overflow-wrap:anywhere}.card-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:14px;gap:8px}.empty{padding:55px 20px;text-align:center;color:var(--muted)}.empty-icon{width:52px;height:52px;background:var(--soft);color:var(--primary);border-radius:16px;display:grid;place-items:center;font-size:24px;margin:0 auto 13px}.empty h3{color:var(--ink);margin:0 0 5px}.empty p{font-size:13px;margin:0 0 17px}.footer{display:flex;justify-content:space-between;gap:12px;color:#a2a8b7;font-size:11px;margin-top:19px}
+.overlay{position:fixed;inset:0;background:#11182c80;display:grid;place-items:center;padding:20px;z-index:10}.modal{background:#fff;width:min(100%,490px);border-radius:18px;box-shadow:0 25px 90px #12182c40;padding:25px;max-height:92vh;overflow:auto}.modal-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:21px}.modal h2{font-size:22px;letter-spacing:-.7px;margin:0}.modal-head p{font-size:13px;color:var(--muted);margin:6px 0 0}.close{border:0;background:#f4f5f9;border-radius:9px;height:33px;width:33px;font-size:20px;color:#7c8496}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:grid;gap:6px;font-size:12px;font-weight:750;color:#59647a}.field.full{grid-column:1/-1}.field input,.field select{width:100%;border:1px solid #e3e6ef;border-radius:9px;padding:11px 12px;font-size:13px;font-weight:450;color:var(--ink);background:#fff}.field input::placeholder{color:#adb3c0}.required{color:var(--red)}.form-error{color:var(--red);font-size:12px;margin:12px 0 0}.modal-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:22px}.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#182238;color:#fff;border-radius:11px;padding:12px 17px;box-shadow:var(--shadow);font-size:13px;z-index:20}
+@media(max-width:900px){.layout{grid-template-columns:200px minmax(0,1fr)}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.content{padding-top:27px}.stats{gap:10px}.stat{padding:16px}.table td,.table th{padding-left:13px;padding-right:13px}}
+@media(max-width:680px){.layout{display:block}.sidebar{display:none}.topbar{height:60px;padding:0 18px}.content{padding:25px 14px}.hero{align-items:flex-start;flex-direction:column}.hero .btn{width:100%}.stats{grid-template-columns:1fr;gap:10px}.stat{display:grid;grid-template-columns:1fr auto;align-items:center}.stat-number{grid-column:2;grid-row:1/3;margin:0;font-size:25px}.stat-desc{grid-column:1}.panel-head{padding:17px 15px 14px}.toolbar{padding:0 15px 15px;flex-wrap:wrap}.search{max-width:none;flex-basis:100%}.filter{max-width:none;flex:1}.result-count{margin-left:0}.table{min-width:760px}.cards{grid-template-columns:1fr;padding:0 14px 14px}.footer{flex-direction:column}.user-chip .topbar-label{display:none}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.modal{padding:20px}}
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-mark">✦</span> Contactly</div>
+    <div>
+      <p class="nav-label">WORKSPACE</p>
+      <nav class="nav" aria-label="Contact filters">
+        <button class="active" data-filter="All Contacts"><span>▦</span> All Contacts <span class="count" id="nav-total">4</span></button>
+        <button data-filter="Favorites"><span>☆</span> Favorites</button>
+        <button data-filter="Work"><span>▣</span> Work</button>
+        <button data-filter="Friends"><span>♧</span> Friends</button>
+        <button data-filter="Family"><span>♡</span> Family</button>
+      </nav>
+    </div>
+    <div class="side-note"><div class="check">✓</div><strong>Saved on this device</strong><p>Your contacts are stored privately in this browser.</p></div>
+    <div class="side-footer">CONTACTLY · PERSONAL CRM</div>
+  </aside>
+  <main>
+    <header class="topbar"><div class="crumb">Workspace&nbsp; / &nbsp;<b>Contacts</b></div><div class="user-chip"><span class="status-dot"></span><span class="topbar-label">Personal workspace</span><span class="avatar-user">U</span></div></header>
+    <section class="content">
+      <div class="hero"><div><p class="eyebrow">YOUR PEOPLE, ORGANIZED</p><h1>Contacts</h1><p class="sub">Keep your important connections all in one place.</p></div><button class="btn btn-primary" id="add-btn"><span>＋</span> Add Contact</button></div>
+      <section class="stats">
+        <article class="stat"><div class="stat-head"><span>Total Contacts</span><span class="stat-icon">♧</span></div><div class="stat-number" id="total-stat">4</div><p class="stat-desc">All your connections</p></article>
+        <article class="stat"><div class="stat-head"><span>Favorites</span><span class="stat-icon">☆</span></div><div class="stat-number" id="fav-stat">2</div><p class="stat-desc">Your important people</p></article>
+        <article class="stat"><div class="stat-head"><span>Work Contacts</span><span class="stat-icon">▣</span></div><div class="stat-number" id="work-stat">2</div><p class="stat-desc">Professional connections</p></article>
+      </section>
+      <section class="panel">
+        <div class="panel-head"><div><h2 id="panel-title">All Contacts</h2><p id="panel-sub">4 contacts in your address book</p></div><div class="view-switch"><button class="active" id="list-view" aria-label="List view" title="List view">☷</button><button id="grid-view" aria-label="Grid view" title="Grid view">▦</button></div></div>
+        <div class="toolbar"><label class="search"><span>⌕</span><input id="search" type="search" placeholder="Search name, email, phone or company..." aria-label="Search contacts"></label><select class="filter" id="category-filter" aria-label="Filter category"><option value="All Categories">All categories</option><option>Work</option><option>Friends</option><option>Family</option></select><span class="result-count" id="result-count">4 results</span></div>
+        <div id="results"></div>
+      </section>
+      <footer class="footer"><span>Contactly · Your personal contact manager</span><span id="footer-count">4 contacts stored on this device</span></footer>
+    </section>
+  </main>
+</div>
+<div id="modal-root"></div><div id="toast-root" aria-live="polite"></div>
+<script>
+(() => {
+ const KEY='contactly-ready-made-contacts-v1';
+ const starter=[
+  {id:1,name:'Ananya Sharma',email:'ananya@example.com',phone:'9876543210',company:'Tech Solutions',category:'Work',favorite:true},
+  {id:2,name:'Rahul Kumar',email:'rahul@example.com',phone:'9876501234',company:'Creative Studio',category:'Friends',favorite:false},
+  {id:3,name:'Priya Reddy',email:'priya@example.com',phone:'9988776655',company:'Design Hub',category:'Work',favorite:true},
+  {id:4,name:'Arjun Patel',email:'arjun@example.com',phone:'9123456780',company:'Personal',category:'Family',favorite:false}
+ ];
+ let contacts=load(), currentFilter='All Contacts', view='list', editingId=null;
+ const $=id=>document.getElementById(id);
+ function load(){try{const v=localStorage.getItem(KEY);return v===null?starter:JSON.parse(v)}catch{return starter}}
+ function save(){localStorage.setItem(KEY,JSON.stringify(contacts))}
+ function esc(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+ function initials(n){return n.trim().split(/\s+/).slice(0,2).map(p=>p[0]||'').join('').toUpperCase()}
+ function filtered(){const q=$('search').value.trim().toLowerCase(),cat=$('category-filter').value;return contacts.filter(c=>{const match=[c.name,c.email,c.phone,c.company].some(v=>(v||'').toLowerCase().includes(q));const f=currentFilter==='All Contacts'||(currentFilter==='Favorites'&&c.favorite)||c.category===currentFilter;return match&&f&&(cat==='All Categories'||c.category===cat)})}
+ function render(){
+  $('total-stat').textContent=contacts.length;$('nav-total').textContent=contacts.length;$('fav-stat').textContent=contacts.filter(c=>c.favorite).length;$('work-stat').textContent=contacts.filter(c=>c.category==='Work').length;
+  $('panel-title').textContent=currentFilter;const list=filtered();$('panel-sub').textContent=`${list.length} ${list.length===1?'contact':'contacts'} in this view`;$('result-count').textContent=`${list.length} result${list.length===1?'':'s'}`;$('footer-count').textContent=`${contacts.length} contact${contacts.length===1?'':'s'} stored on this device`;
+  document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active',b.dataset.filter===currentFilter));
+  const root=$('results');
+  if(!list.length){root.innerHTML=`<div class="empty"><div class="empty-icon">⌕</div><h3>No contacts found</h3><p>Try another search or add a new contact.</p><button class="btn btn-primary" id="empty-add">＋ Add Contact</button></div>`;$('empty-add').onclick=()=>openModal();return}
+  if(view==='list'){
+   root.innerHTML=`<div class="table-wrap"><table class="table"><thead><tr><th>NAME</th><th>PHONE</th><th>EMAIL</th><th>GROUP</th><th>ACTIONS</th></tr></thead><tbody>${list.map((c,i)=>`<tr><td><div class="person"><div class="person-avatar tone-${i%5}">${esc(initials(c.name))}</div><div><div class="person-name">${esc(c.name)}</div><div class="person-company">${esc(c.company||'No company')}</div></div></div></td><td>${esc(c.phone||'—')}</td><td class="muted">${esc(c.email||'—')}</td><td><span class="tag ${esc(c.category)}">${esc(c.category)}</span></td><td><div class="actions"><button class="icon-btn ${c.favorite?'fav':''}" data-action="favorite" data-id="${c.id}" title="Toggle favorite" aria-label="Toggle favorite">${c.favorite?'★':'☆'}</button><button class="icon-btn" data-action="edit" data-id="${c.id}" title="Edit contact" aria-label="Edit contact">✎</button><button class="icon-btn del" data-action="delete" data-id="${c.id}" title="Delete contact" aria-label="Delete contact">×</button></div></td></tr>`).join('')}</tbody></table></div>`;
+  }else{
+   root.innerHTML=`<div class="cards">${list.map((c,i)=>`<article class="contact-card"><div class="contact-card-top"><div class="person-avatar tone-${i%5}">${esc(initials(c.name))}</div><button class="icon-btn ${c.favorite?'fav':''}" data-action="favorite" data-id="${c.id}" title="Toggle favorite">${c.favorite?'★':'☆'}</button></div><h3>${esc(c.name)}</h3><p class="company">${esc(c.company||'No company')}</p><p class="detail">☎ &nbsp;${esc(c.phone||'No phone')}</p><p class="detail">✉ &nbsp;${esc(c.email||'No email')}</p><div class="card-bottom"><span class="tag ${esc(c.category)}">${esc(c.category)}</span><div class="actions"><button class="icon-btn" data-action="edit" data-id="${c.id}" title="Edit">✎</button><button class="icon-btn del" data-action="delete" data-id="${c.id}" title="Delete">×</button></div></div></article>`).join('')}</div>`;
+  }
+ }
+ function toast(msg){$('toast-root').innerHTML=`<div class="toast">${esc(msg)}</div>`;setTimeout(()=>$('toast-root').innerHTML='',2400)}
+ function closeModal(){$('modal-root').innerHTML='';editingId=null}
+ function openModal(contact=null){
+  editingId=contact?contact.id:null;const c=contact||{name:'',phone:'',email:'',company:'',category:'Friends'};
+  $('modal-root').innerHTML=`<div class="overlay" id="overlay"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><div><p class="eyebrow">${contact?'UPDATE DETAILS':'GROW YOUR NETWORK'}</p><h2 id="modal-title">${contact?'Edit Contact':'Add New Contact'}</h2><p>Fill in the details below.</p></div><button class="close" id="close-modal" aria-label="Close">×</button></div><form id="contact-form"><div class="form-grid"><label class="field full">Full name <span class="required">*</span><input name="name" required maxlength="100" placeholder="Enter full name" value="${esc(c.name)}"></label><label class="field">Phone number <span class="required">*</span><input name="phone" required maxlength="20" placeholder="Enter phone number" value="${esc(c.phone)}"></label><label class="field">Email address<input name="email" type="email" maxlength="254" placeholder="name@example.com" value="${esc(c.email)}"></label><label class="field full">Company<input name="company" maxlength="100" placeholder="Company or organization" value="${esc(c.company)}"></label><label class="field full">Contact group<select name="category"><option ${c.category==='Friends'?'selected':''}>Friends</option><option ${c.category==='Family'?'selected':''}>Family</option><option ${c.category==='Work'?'selected':''}>Work</option></select></label></div><p class="form-error" id="form-error" hidden></p><div class="modal-actions"><button type="button" class="btn" id="cancel-modal">Cancel</button><button type="submit" class="btn btn-primary">${contact?'Save Changes':'Add Contact'}</button></div></form></section></div>`;
+  $('close-modal').onclick=closeModal;$('cancel-modal').onclick=closeModal;$('overlay').addEventListener('click',e=>{if(e.target.id==='overlay')closeModal()});
+  $('contact-form').onsubmit=e=>{e.preventDefault();const data=Object.fromEntries(new FormData(e.currentTarget).entries());data.name=data.name.trim();data.phone=data.phone.trim();data.email=data.email.trim().toLowerCase();data.company=data.company.trim();const err=$('form-error');
+   if(!data.name||!data.phone){err.hidden=false;err.textContent='Name and phone number are required.';return}
+   if(!/^[0-9+\-()\s]{7,20}$/.test(data.phone)){err.hidden=false;err.textContent='Please enter a valid phone number.';return}
+   const duplicate=contacts.some(x=>x.id!==editingId&&(x.phone.replace(/\D/g,'')===data.phone.replace(/\D/g,'')||(data.email&&x.email.toLowerCase()===data.email)));
+   if(duplicate){err.hidden=false;err.textContent='A contact with this phone number or email already exists.';return}
+   if(editingId!==null){contacts=contacts.map(x=>x.id===editingId?{...x,...data,favorite:x.favorite}:x);toast('Contact updated')}
+   else{contacts.push({...data,id:Date.now(),favorite:false});toast('Contact added')}
+   save();closeModal();render();
+  };
+  $('modal-root').querySelector('input[name="name"]').focus();
+ }
+ $('add-btn').onclick=()=>openModal();
+ document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{currentFilter=b.dataset.filter;render()});
+ $('search').addEventListener('input',render);$('category-filter').addEventListener('change',render);
+ $('list-view').onclick=()=>{view='list';$('list-view').classList.add('active');$('grid-view').classList.remove('active');render()};
+ $('grid-view').onclick=()=>{view='grid';$('grid-view').classList.add('active');$('list-view').classList.remove('active');render()};
+ $('results').addEventListener('click',e=>{const b=e.target.closest('[data-action]');if(!b)return;const id=Number(b.dataset.id),c=contacts.find(x=>x.id===id);if(!c)return;
+  if(b.dataset.action==='favorite'){c.favorite=!c.favorite;save();render();toast(c.favorite?'Added to favorites':'Removed from favorites')}
+  if(b.dataset.action==='edit')openModal(c);
+  if(b.dataset.action==='delete'&&confirm(`Delete ${c.name}?`)){contacts=contacts.filter(x=>x.id!==id);save();render();toast('Contact deleted')}
+ });
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){$('search').focus();e.preventDefault()}});
+ render();
+})();
+</script>
+</body>
+</html>
